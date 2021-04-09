@@ -14,6 +14,9 @@
                 <li class="nav-item nav-link">
                     <router-link to="/login/" name="login">Sign In/Up</router-link>
                 </li>
+                <li class="nav-item nav-link" v-show="seen">
+                    <button @click="logOut" class="text-white">Logout</button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -22,5 +25,36 @@
 </template>
 
 <script>
-export default{}
+export default{
+    data(){
+        return {
+            user:'',
+            seen:true,
+        }
+    },
+    mounted(){
+        this.cekUser();
+    },
+    methods:{
+        cekUser(){
+            const parse = JSON.parse(localStorage.getItem('user'));
+            if(parse != "kosong"){
+                this.showLog();
+            }else if(parse=="kosong"){
+                this.hideLog();
+            }
+        },
+        logOut(){
+            const string = JSON.stringify("kosong");
+            localStorage.setItem('user',string);
+            window.location.reload();
+        },
+        hideLog(){
+            this.seen = false;
+        },
+        showLog(){
+            this.seen=true;
+        }
+    }
+}
 </script>

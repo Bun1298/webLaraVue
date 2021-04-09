@@ -1868,7 +1868,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      user: '',
+      seen: true
+    };
+  },
+  mounted: function mounted() {
+    this.cekUser();
+  },
+  methods: {
+    cekUser: function cekUser() {
+      var parse = JSON.parse(localStorage.getItem('user'));
+
+      if (parse != "kosong") {
+        this.showLog();
+      } else if (parse == "kosong") {
+        this.hideLog();
+      }
+    },
+    logOut: function logOut() {
+      var string = JSON.stringify("kosong");
+      localStorage.setItem('user', string);
+      window.location.reload();
+    },
+    hideLog: function hideLog() {
+      this.seen = false;
+    },
+    showLog: function showLog() {
+      this.seen = true;
+    }
+  }
+});
 
 /***/ }),
 
@@ -2160,8 +2195,8 @@ __webpack_require__.r(__webpack_exports__);
       lokers: [],
       keyword: null,
       // name:[],
-      id: '',
-      status: '' // email:'',
+      id: "",
+      status: "" // email:'',
       // username:''
 
     };
@@ -2202,20 +2237,25 @@ __webpack_require__.r(__webpack_exports__);
     },
     cekUser: function cekUser() {
       // Ambil data Local
-      var parsed = JSON.parse(localStorage.getItem('user')); // Declare data
+      var parsed = JSON.parse(localStorage.getItem("user")); // Declare data
+      // Cek Status
 
-      this.id = parsed[0].id;
-      this.status = parsed[0].status; // Cek Status
-
-      if (parsed[0].status != "E") {
-        // Jika bukan E (ALUMNI) LOAD DATA LOWONGAN
-        this.getData(this.id, this.status);
+      if (parsed == "kosong") {
+        console.log("Guest");
+        this.getData(null, null);
       } else {
-        // JIKA ALUMNI LOAD DATA ADMIN
-        this.$router.push({
-          name: "admin"
-        });
-      }
+        this.id = parsed[0].id;
+        this.status = parsed[0].status;
+        console.log(this.id + "_" + this.status);
+        this.getData(this.id, this.status);
+      } // // if (parsed[0].status != "E") {
+      //     // Jika bukan E (ALUMNI) LOAD DATA LOWONGAN
+      //     // this.getData(this.id, this.status);
+      // // } else {
+      //     // JIKA ALUMNI LOAD DATA ADMIN
+      //     // this.$router.push({ name: "admin" });
+      // // }
+
     },
     getData: function getData(dataId, dataStatus) {
       var _this2 = this;
@@ -39334,6 +39374,28 @@ var render = function() {
                 ])
               ],
               1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.seen,
+                    expression: "seen"
+                  }
+                ],
+                staticClass: "nav-item nav-link"
+              },
+              [
+                _c(
+                  "button",
+                  { staticClass: "text-white", on: { click: _vm.logOut } },
+                  [_vm._v("Logout")]
+                )
+              ]
             )
           ])
         ])
@@ -39785,9 +39847,9 @@ var render = function() {
                       [
                         _c("h4", { staticClass: "font-weight-bold" }, [
                           _vm._v(
-                            "\r\n                                    " +
+                            "\n                                " +
                               _vm._s(item.title_loker) +
-                              "\r\n                                "
+                              "\n                            "
                           )
                         ]),
                         _vm._v(" "),
@@ -39805,7 +39867,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "Lebih Lanjut Item\r\n                                    " +
+                              "Lebih Lanjut Item\n                                " +
                                 _vm._s(item.id)
                             )
                           ]
@@ -39832,7 +39894,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row text-center py-4" }, [
       _c("div", { staticClass: "col-md py-4 h4" }, [
         _vm._v(
-          "\r\n                        Dapatkan pekerjaan dari alumni\r\n                    "
+          "\n                    Dapatkan pekerjaan dari alumni\n                "
         )
       ]),
       _vm._v(" "),

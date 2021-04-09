@@ -1,7 +1,6 @@
 <template>
     <!-- Disini tampilan home / index / view logo / home -->
     <div>
-        TAYO
         <div
             class="content-1"
             style="background-color:rgba(0,0,0,0.5);height:auto;"
@@ -109,17 +108,23 @@ export default {
             const parsed = JSON.parse(localStorage.getItem("user"));
 
             // Declare data
-            this.id = parsed[0].id;
-            this.status = parsed[0].status;
-
             // Cek Status
-            if (parsed[0].status != "E") {
-                // Jika bukan E (ALUMNI) LOAD DATA LOWONGAN
-                this.getData(this.id, this.status);
-            } else {
-                // JIKA ALUMNI LOAD DATA ADMIN
-                this.$router.push({ name: "admin" });
+            if(parsed=="kosong"){
+                console.log("Guest")
+                this.getData(null,null);
+            }else{
+                this.id = parsed[0].id;
+                this.status = parsed[0].status;
+                console.log(this.id+"_"+this.status)
+                this.getData(this.id,this.status);
             }
+            // // if (parsed[0].status != "E") {
+            //     // Jika bukan E (ALUMNI) LOAD DATA LOWONGAN
+            //     // this.getData(this.id, this.status);
+            // // } else {
+            //     // JIKA ALUMNI LOAD DATA ADMIN
+            //     // this.$router.push({ name: "admin" });
+            // // }
         },
         getData(dataId, dataStatus) {
             if ((dataStatus = "A")) {
