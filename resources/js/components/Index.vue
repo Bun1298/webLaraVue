@@ -1,6 +1,7 @@
 <template>
-<!-- Disini tampilan home / index / view logo / home -->
+    <!-- Disini tampilan home / index / view logo / home -->
     <div>
+        TAYO
         <div
             class="content-1"
             style="background-color:rgba(0,0,0,0.5);height:auto;"
@@ -67,8 +68,8 @@ export default {
             lokers: [],
             keyword: null,
             // name:[],
-            id:'',
-            status:'',
+            id: "",
+            status: ""
             // email:'',
             // username:''
         };
@@ -96,7 +97,7 @@ export default {
         //         localStorage.removeItem("user");
         //     }
         // }
-        },
+    },
     methods: {
         getResults() {
             axios
@@ -105,23 +106,23 @@ export default {
         },
         cekUser() {
             // Ambil data Local
-            const parsed = JSON.parse(localStorage.getItem('user'));
-            
+            const parsed = JSON.parse(localStorage.getItem("user"));
+
             // Declare data
             this.id = parsed[0].id;
             this.status = parsed[0].status;
-            
+
             // Cek Status
-            if(parsed[0].status!="E"){
+            if (parsed[0].status != "E") {
                 // Jika bukan E (ALUMNI) LOAD DATA LOWONGAN
-                this.getData(this.id,this.status);
-            }else{
+                this.getData(this.id, this.status);
+            } else {
                 // JIKA ALUMNI LOAD DATA ADMIN
-                this.$router.push({name:"admin"})
+                this.$router.push({ name: "admin" });
             }
         },
-        getData(dataId,dataStatus) {
-            if (dataStatus="A") {
+        getData(dataId, dataStatus) {
+            if ((dataStatus = "A")) {
                 // Jika kosong munculkan view guest
                 this.axios
                     .get("http://localhost:8000/api/lokers/")
