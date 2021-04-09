@@ -12,7 +12,8 @@
                     <router-link to="/admin/" name="admin">Admin</router-link>
                 </li> -->
                 <li class="nav-item nav-link">
-                    <router-link to="/login/" name="login">Sign In/Up</router-link>
+                    <!-- <router-link to="/login/" name="login">Sign In/Up</router-link> -->
+                    <router-link :to="'/'+sign+'/'+id" :name="sign">{{signValue}}</router-link>
                 </li>
                 <li class="nav-item nav-link" v-show="seen">
                     <button @click="logOut" class="text-white">Logout</button>
@@ -30,6 +31,9 @@ export default{
         return {
             user:'',
             seen:true,
+            sign:'login',
+            id:'',
+            signValue:'Login',
         }
     },
     mounted(){
@@ -47,7 +51,9 @@ export default{
         logOut(){
             const string = JSON.stringify("kosong");
             localStorage.setItem('user',string);
-            window.location.reload();
+            // window.location.reload();
+            // this.$router.push({ name:'index' })
+            this.$router.go('/');
         },
         hideLog(){
             this.seen = false;

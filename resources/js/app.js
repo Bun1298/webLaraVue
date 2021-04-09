@@ -6,7 +6,7 @@
 
  
 //  import App from './App.vue';
-import index from './Index.vue';
+import navigation from './Navigation.vue';
 import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
 import axios from 'axios';
@@ -36,5 +36,5 @@ import Vue from 'vue';
  const app = new Vue({
      el: '#app',
      router: router,
-     render: h => h(index),
+     render: h => h(navigation),
  });

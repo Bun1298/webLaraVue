@@ -50,6 +50,7 @@ export default{
 
           // Kembali ke View Index
           this.$router.push({name:'index'});
+          this.$router.go('/')
         }
         else if(response.data="kosong"){
           // Jika value yang di return kosong maka
