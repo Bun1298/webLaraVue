@@ -67,7 +67,7 @@ export default {
         return {
             lokers: [],
             keyword: null,
-            seen:true,
+            seen: true,
             id: "",
             status: ""
         };
@@ -87,7 +87,7 @@ export default {
         //         this.lokers = response.data;
         //     });
     },
-    mounted:function() {
+    mounted: function() {
         // if (localStorage.getItem("user")) {
         //     try {
         //         this.name = JSON.parse(localStorage.getItem("user"));
@@ -106,27 +106,27 @@ export default {
             // Ambil data Local
             const parsed = JSON.parse(localStorage.getItem("user"));
 
-            if(parsed !=null){
-                if(parsed=="kosong"){
-                    console.log("Guest")
-                    this.getData(null,null);
-                }else{
+            if (parsed != null) {
+                if (parsed == "kosong") {
+                    console.log("Guest");
+                    this.getData(null, null);
+                } else {
                     this.id = parsed[0].id;
                     this.status = parsed[0].status;
-                    console.log(this.id+"_"+this.status)
-                    this.getData(this.id,this.status);
-                            
+                    console.log(this.id + "_" + this.status);
+                    this.getData(this.id, this.status);
+
                     if (parsed[0].status != "E") {
                         // Jika bukan E (ALUMNI) LOAD DATA LOWONGAN
                         this.getData(this.id, this.status);
-                    }else {
+                    } else {
                         // JIKA ALUMNI LOAD DATA ADMIN
                         this.$router.push({ name: "admin" });
                     }
-                }            
-                }else{
-                    localStorage.setItem('user',JSON.stringify("kosong"))
-                    this.getData(null,null)
+                }
+            } else {
+                localStorage.setItem("user", JSON.stringify("kosong"));
+                this.getData(null, null);
             }
         },
         getData(dataId, dataStatus) {

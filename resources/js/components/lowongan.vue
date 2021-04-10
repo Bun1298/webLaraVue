@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md">
-                    {{test}}
+                    {{ dataList }}
                     <table>
                         <!-- <tr v-for="(item,index) in dataList" :key="index"> -->
                             <!-- <td>{{ item.id }}</td> -->
@@ -16,10 +16,11 @@
 </template>
 <script>
 export default{
-    data:{
-        return:{
+    data(){
+        return{
             dataList:[],
-            test:'ikan'
+            test:'ikan',
+            ids:'',
         }
     },
     created(){
@@ -27,9 +28,11 @@ export default{
     },
     methods:{
         cekData(){
-            const parsed = JSON.parse(localStorae.getItem('user'));
-            console.log(parsed);
-            // this.axios.get('http://localhost:8000/api/lokers').then(response=>(this.dataList = response.data));
+            const parsed = JSON.parse(localStorage.getItem('user'));
+            this.ids = parsed[0].id
+            // console.log(ids)
+            // console.log(parsed);
+            this.axios.get('http://localhost:8000/lowongan/',this.ids).then(response=>(console.log(response.data)));
         }
     }
 }

@@ -29,6 +29,11 @@ class TbLokerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function scopeGetLoker($id){
+        $data = tb_loker::find($id);
+        return $data;
+    }
+
     public function create()
     {
         //
