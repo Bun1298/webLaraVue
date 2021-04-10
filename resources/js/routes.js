@@ -7,6 +7,7 @@ import Login from './components/Login.vue';
 import Register from './components/Register.vue';
 import DetailLoker from './components/DetailLoker.vue';
 import homeSuccess from './components/homeSuccess.vue';
+import lowongan from './components/lowongan.vue';
 
 export const routes = [
     {
@@ -53,5 +54,10 @@ export const routes = [
         name:'login_success',
         path:'/home_success/:id',
         component:homeSuccess
+    },
+    {
+        name:'lowongan',
+        path:'/admin/lowongan',
+        component:lowongan
     }
 ];
