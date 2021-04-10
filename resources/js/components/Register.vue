@@ -15,6 +15,10 @@
           <input type="text" v-model="user.username" class="form-control">
         </div>
         <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" v-model="user.nama" class="form-control">
+        </div> 
+        <div class="form-group">
           <label>Email</label>
           <input type="email" v-model="user.email" class="form-control">
         </div>
@@ -44,6 +48,15 @@
           <br>
           Status User : {{user.status}} -->
         </div>
+        <div class="form-group">
+          <label>Tanggal Lahir</label>
+          <input type="date" class="form-control" v-model="user.tgl_lahir">
+        </div>
+        <div class="form-group">
+          <label>Tahun Masuk</label>
+          <input type="number" maxlength="4" class="form-control" v-model="user.tahun_masuk">
+        </div>
+        
         <div class="form-group">
           <button type="submit" class="btn btn-primary text-white form-control">Register</button>
         </div>

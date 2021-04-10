@@ -18,6 +18,9 @@
                 <li class="nav-item nav-link" v-show="seen">
                     <button @click="logOut" class="text-white">Logout</button>
                 </li>
+                <li class="nav-item nav-link" v-show="admin">
+                    <button @click="moveAdmin" class="btn btn-primary">Admin</button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -33,7 +36,9 @@ export default{
             seen:true,
             sign:'login',
             id:'',
+            status:'',
             signValue:'Login',
+            admin:true,
         }
     },
     mounted(){
@@ -43,16 +48,18 @@ export default{
         cekUser(){
             const parse = JSON.parse(localStorage.getItem('user'));
             if(parse != "kosong"){
-                this.showLog();
+                this.moveAdmin(parse[0].id,parse[0].status);
+                this.seen = true;
+                this.admin = true;
             }else if(parse=="kosong"){
-                this.hideLog();
+                this.status = parse[0];
+                this.seen=false;
+                this.admin = false;
             }
         },
         logOut(){
             const string = JSON.stringify("kosong");
             localStorage.setItem('user',string);
-            // window.location.reload();
-            // this.$router.push({ name:'index' })
             this.$router.go('/');
         },
         hideLog(){
@@ -60,6 +67,12 @@ export default{
         },
         showLog(){
             this.seen=true;
+        },
+        moveAdmin(id,status){
+            // console.log(this.id+this.status);
+            const curStat = this.status;
+
+            // this.$router.go('/admin/');
         }
     }
 }

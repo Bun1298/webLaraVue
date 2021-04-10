@@ -1872,6 +1872,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1879,7 +1882,9 @@ __webpack_require__.r(__webpack_exports__);
       seen: true,
       sign: 'login',
       id: '',
-      signValue: 'Login'
+      status: '',
+      signValue: 'Login',
+      admin: true
     };
   },
   mounted: function mounted() {
@@ -1890,16 +1895,18 @@ __webpack_require__.r(__webpack_exports__);
       var parse = JSON.parse(localStorage.getItem('user'));
 
       if (parse != "kosong") {
-        this.showLog();
+        this.moveAdmin(parse[0].id, parse[0].status);
+        this.seen = true;
+        this.admin = true;
       } else if (parse == "kosong") {
-        this.hideLog();
+        this.status = parse[0];
+        this.seen = false;
+        this.admin = false;
       }
     },
     logOut: function logOut() {
       var string = JSON.stringify("kosong");
-      localStorage.setItem('user', string); // window.location.reload();
-      // this.$router.push({ name:'index' })
-
+      localStorage.setItem('user', string);
       this.$router.go('/');
     },
     hideLog: function hideLog() {
@@ -1907,6 +1914,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     showLog: function showLog() {
       this.seen = true;
+    },
+    moveAdmin: function moveAdmin(id, status) {
+      // console.log(this.id+this.status);
+      var curStat = this.status; // this.$router.go('/admin/');
     }
   }
 });
@@ -2260,9 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
             this.getData(this.id, this.status);
           } else {
             // JIKA ALUMNI LOAD DATA ADMIN
-            this.$router.push({
-              name: "admin"
-            });
+            this.getData(this.id, this.status); // this.$router.push({ name: "admin" });
           }
         }
       } else {
@@ -2453,6 +2462,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39547,6 +39569,31 @@ var render = function() {
                   [_vm._v("Logout")]
                 )
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.admin,
+                    expression: "admin"
+                  }
+                ],
+                staticClass: "nav-item nav-link"
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    on: { click: _vm.moveAdmin }
+                  },
+                  [_vm._v("Admin")]
+                )
+              ]
             )
           ])
         ])
@@ -40361,6 +40408,32 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Nama Lengkap")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.user.nama,
+                      expression: "user.nama"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.user.nama },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.user, "nama", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
                 _c("label", [_vm._v("Email")]),
                 _vm._v(" "),
                 _c("input", {
@@ -40510,6 +40583,58 @@ var render = function() {
                     ])
                   ]
                 )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Tanggal Lahir")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.user.tgl_lahir,
+                      expression: "user.tgl_lahir"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "date" },
+                  domProps: { value: _vm.user.tgl_lahir },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.user, "tgl_lahir", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Tahun Masuk")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.user.tahun_masuk,
+                      expression: "user.tahun_masuk"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number", maxlength: "4" },
+                  domProps: { value: _vm.user.tahun_masuk },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.user, "tahun_masuk", $event.target.value)
+                    }
+                  }
+                })
               ]),
               _vm._v(" "),
               _vm._m(1)

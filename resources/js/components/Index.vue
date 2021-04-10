@@ -121,7 +121,8 @@ export default {
                         this.getData(this.id, this.status);
                     } else {
                         // JIKA ALUMNI LOAD DATA ADMIN
-                        this.$router.push({ name: "admin" });
+                        this.getData(this.id,this.status);
+                        // this.$router.push({ name: "admin" });
                     }
                 }
             } else {
