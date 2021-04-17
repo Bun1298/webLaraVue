@@ -19,7 +19,8 @@
                     <button @click="logOut" class="text-white">Logout</button>
                 </li>
                 <li class="nav-item nav-link" v-show="admin">
-                    <button @click="moveAdmin" class="btn btn-primary">Admin</button>
+                    <router-link to="/ceklowongan/" class="btn btn-primary" name="ceklowongan">Cek Lowongan</router-link>
+                    <!-- <button :id="this.id" @click="tambahLowongan()" class="btn btn-primary">Admin</button> -->
                 </li>
             </ul>
         </div>
@@ -48,7 +49,8 @@ export default{
         cekUser(){
             const parse = JSON.parse(localStorage.getItem('user'));
             if(parse != "kosong"){
-                this.moveAdmin(parse[0].id,parse[0].status);
+                // this.moveAdmin(parse[0].id,parse[0].status);
+                this.id = parse[0].id
                 this.seen = true;
                 this.admin = true;
             }else if(parse=="kosong"){
@@ -68,11 +70,12 @@ export default{
         showLog(){
             this.seen=true;
         },
-        moveAdmin(id,status){
-            // console.log(this.id+this.status);
-            const curStat = this.status;
-
-            // this.$router.go('/admin/');
+        moveAdmin(){
+            const parsed = JSON.parse(localStorage.getItem('user'));
+            this.id = parsed[0].id
+            this.status = parsed[0].status;
+            this.goAdmin(this.id);
+            // console.log(this.id,this.status);
         }
     }
 }

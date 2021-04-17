@@ -6,6 +6,7 @@ use App\Http\Controllers\TbJurusanController;
 use App\Http\Controllers\TbAlumniController;
 use App\Http\Controllers\TbLokerController;
 use App\Http\Controllers\TbUserController;
+use App\Http\Controllers\LowonganController;
 use App\Models\tb_loker;
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,5 @@ Route::middleware('api')->group(function(){
 	Route::resource('alumnis',TbAlumniController::class);
 	Route::resource('lokers',TbLokerController::class);
 	Route::resource('users',TbUserController::class);
-	// Route::get('http://localhost:8000/login');
-	// Route::get('/detail_loker/{id}',function($id){
-	// 	$data = tb_loker::find($id);
-	// 	return response()->json($data);
-	// });
+	Route::resource('lowongan',LowonganController::class);
 });

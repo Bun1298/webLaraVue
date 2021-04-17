@@ -77,8 +77,17 @@ class TbUserController extends Controller
         }
         // User berhasil verifikasi
     }
+
+    public function scopeGetAdmin($id){
+        $data = tb_user::find($id);
+        return response()->json($data);
+        // error_log("tayo");
+        // return $ids;
+    }
+
     public function show(Request $request)
     {
+        return "HEY";
         // $email = $request->input('email');
         // return $email;
         //

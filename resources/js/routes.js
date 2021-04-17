@@ -8,6 +8,8 @@ import Register from './components/Register.vue';
 import DetailLoker from './components/DetailLoker.vue';
 import homeSuccess from './components/homeSuccess.vue';
 import lowongan from './components/lowongan.vue';
+import cekLowongan from './components/cekLowongan.vue';
+import tambahLowongan from './components/tambahLowongan.vue';
 
 export const routes = [
     {
@@ -59,5 +61,15 @@ export const routes = [
         name:'lowongan',
         path:'/admin/lowongan',
         component:lowongan
-    }
+    },
+    {
+        name:'ceklowongan',
+        path:'/ceklowongan',
+        component:cekLowongan
+    },
+    {
+        name:'tambahLowongan',
+        path:'/tambahLowongan',
+        component:tambahLowongan
+    },
 ];

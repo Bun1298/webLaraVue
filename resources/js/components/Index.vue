@@ -113,7 +113,7 @@ export default {
                 } else {
                     this.id = parsed[0].id;
                     this.status = parsed[0].status;
-                    console.log(this.id + "_" + this.status);
+                    // console.log(this.id + "_" + this.status);
                     this.getData(this.id, this.status);
 
                     if (parsed[0].status != "E") {
@@ -141,6 +141,10 @@ export default {
             } else {
                 // Jika Admin munculkan view admin
             }
+        },
+        checkAdmin(){
+            this.axios
+            .get('http://localhost:8000/cekAdmin/1')
         }
     }
 };
