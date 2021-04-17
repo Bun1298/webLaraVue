@@ -10,11 +10,13 @@ class tb_loker extends Model
     use HasFactory;
 
     protected $fillable=[
-    	'nama',
-    	'tahun_masuk',
-    	'tahun_lulus',
-    	'jurusan',
-    	'tgl_lahir'
+    	'title_loker',
+    	'job_des',
+    	'overview',
+    	'additional_info',
+    	'kontak',
+		'uid_alumni',
+		'status'
     ];
     public $timestamps=false;
 

@@ -2760,6 +2760,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2767,7 +2798,10 @@ __webpack_require__.r(__webpack_exports__);
       adminCheck: false,
       status: "",
       uid: "",
-      notAdmin: true
+      notAdmin: true,
+      data: {},
+      hiddenId: false,
+      gambar: []
     };
   },
   created: function created() {
@@ -2776,13 +2810,14 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     cekData: function cekData() {
       var parsed = JSON.parse(localStorage.getItem('user'));
-      this.status = parsed[0].status;
-      this.uid = parsed[0].id;
+      this.status = parsed[0].status; // this.uid = parsed[0].id;
 
       if (this.status === "E") {
         // Jika alumni do something
         this.adminCheck = true;
         this.notAdmin = false; // Allow view admin
+
+        this.uid = parsed[0].id;
       } else {
         // Jika Bukan Alumni do something
         this.valueData = "Anda bukan alumni jadi tidak bisa post job";
@@ -2791,6 +2826,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     addLowongan: function addLowongan() {
       this.$router.push('/tambahLowongan/');
+    },
+    tambahLowongan: function tambahLowongan() {
+      this.axios.post('http://localhost:8000/tambahLowongan/', this.data).then(function (response) {
+        console.log(response.data);
+      });
     }
   }
 });
@@ -41167,7 +41207,279 @@ var render = function() {
         ],
         staticClass: "viewAdmin"
       },
-      [_vm._m(0)]
+      [
+        _c("div", { staticClass: "container py-4" }, [
+          _c("div", { staticClass: "row py-4" }, [
+            _c("div", { staticClass: "col-md" }, [
+              _c(
+                "form",
+                {
+                  attrs: { enctype: "multipart/form-data" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.tambahLowongan($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Title Job")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.title_loker,
+                          expression: "data.title_loker"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "title_job",
+                        placeholder: "Title Job"
+                      },
+                      domProps: { value: _vm.data.title_loker },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "title_loker", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Job Description")]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.job_des,
+                          expression: "data.job_des"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "job_des",
+                        cols: "30",
+                        rows: "10",
+                        maxlength: "2000",
+                        placeholder: "Job Description"
+                      },
+                      domProps: { value: _vm.data.job_des },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "job_des", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Overview")]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.overview,
+                          expression: "data.overview"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "overview",
+                        cols: "30",
+                        rows: "10",
+                        maxlength: "2000",
+                        placeholder: "Overview"
+                      },
+                      domProps: { value: _vm.data.overview },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "overview", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Additional information")]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.additional_info,
+                          expression: "data.additional_info"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "additional_info",
+                        cols: "30",
+                        rows: "10",
+                        maxlength: "2000",
+                        placeholder: "Additional Information"
+                      },
+                      domProps: { value: _vm.data.additional_info },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.data,
+                            "additional_info",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Contact Info")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.email,
+                          expression: "data.email"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "email",
+                        name: "email",
+                        placeholder: "email"
+                      },
+                      domProps: { value: _vm.data.email },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "email", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.data.notelp,
+                          expression: "data.notelp"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "notelp",
+                        placeholder: "notelp"
+                      },
+                      domProps: { value: _vm.data.notelp },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.data, "notelp", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Foto Aktivitas")]),
+                    _vm._v(" "),
+                    _c(
+                      "input",
+                      _vm._g(
+                        {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "file",
+                            name: "images[]",
+                            multiple: ""
+                          }
+                        },
+                        _vm.data.gambar
+                      )
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.hiddenId,
+                          expression: "hiddenId"
+                        }
+                      ]
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.data.id,
+                            expression: "data.id"
+                          }
+                        ],
+                        attrs: { type: "text", name: "uid_alumni" },
+                        domProps: { value: _vm.data.id },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.data, "id", $event.target.value)
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary text-white form-control",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Tambah Lowongan")]
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ]
     ),
     _vm._v(" "),
     _c(
@@ -41198,31 +41510,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container py-4" }, [
-      _c("div", { staticClass: "row py-4" }, [
-        _c("div", { staticClass: "col-md" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Title Job")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "title_job",
-                placeholder: "Title Job"
-              }
-            })
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

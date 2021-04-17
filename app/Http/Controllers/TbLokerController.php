@@ -34,6 +34,29 @@ class TbLokerController extends Controller
         return $data;
     }
 
+    public function tambahLowongan(Request $request){
+        $input = $request->all();
+        $images = array();
+        if($_FILES=$request->file('images')){
+            foreach($files as $file){
+                $name=$file->getClientOriginalName();
+                $file->move('image',$name);
+                $images[]=$name;
+            }
+        }
+
+        $data= new tb_loker([
+            'title_loker' => $request->input('title_loker'),
+            'job_des' => $request->input('job_des'),
+            'overview' => $request->input('overview'),
+            'additional_info' => $request->input('additional_info'),
+            'kontak' => $request->input('notelp'),
+            'uid' => $request->input('uid_alumni'),
+            'status'=>'A'
+        ]);
+        return response()->json($data);
+    }
+
     public function create()
     {
         //

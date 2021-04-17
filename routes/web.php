@@ -28,5 +28,6 @@ Route::get('/',function(){
 // });
 // Route::get('/livesearch',[TbLokerController::class,'getLive']);
 Route::post('/loginUser',[TbUserController::class,'scopeGetLogin']);
-Route::get('/lowongan',[TbLokerController::class,'scopeGetLoker']);
+// Route::get('/lowongan',[TbLokerController::class,'scopeGetLoker']);
 Route::post('/cekAdmin',[TbUserController::class,'index']);
+Route::post('/tambahLowongan',[TbLokerController::class,'tambahLowongan']);
